@@ -1,0 +1,64 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+WWW::IP - Returns your ip address with failsafe mechanism
+
+=head1 VERSION
+
+version 0.01
+
+=head1 SYNOPSIS
+
+    use WWW::IP;
+
+    my $ip = get_ip(); # 54.123.84.6
+
+=head1 EXPORTS
+
+Exports the C<get_ip> function.
+
+=head1 FUNCTIONS
+
+=head2 get_ip
+
+Returns your ip address. Will try a number of services in succession should the 
+
+    use WWW::IP;
+
+    my $ip = get_ip();
+
+=head1 SEE ALSO
+
+These modules are used by WWW::IP:
+
+=over
+
+=item *
+
+L<WWW::curlmyip> - another module that returns your ip address
+
+=item *
+
+L<WWW::ipinfo> - a module that returns ip address and geolocation data
+
+=item *
+
+L<WWW::hmaip> - another module that returns your ip address
+
+=back
+
+=head1 AUTHOR
+
+David Farrell <sillymoos@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2014 by David Farrell.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
