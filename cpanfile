@@ -1,7 +1,7 @@
 requires "Exporter" => "0";
 requires "HTTP::Tiny" => "0";
 requires "Try::Tiny" => "0";
-requires "WWW::curlmyip" => "0";
+requires "WWW::PerlTricksIP" => "0";
 requires "WWW::hmaip" => "0";
 requires "WWW::ipinfo" => "0";
 requires "base" => "0";
@@ -20,6 +20,8 @@ on 'configure' => sub {
 
 on 'develop' => sub {
   requires "Pod::Coverage::TrustPod" => "0";
+  requires "Test::EOL" => "0";
+  requires "Test::More" => "0.88";
   requires "Test::Pod" => "1.41";
   requires "Test::Pod::Coverage" => "1.08";
 };

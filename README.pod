@@ -8,7 +8,7 @@ WWW::IP - Returns your ip address with failsafe mechanism
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -38,21 +38,21 @@ These modules are used by WWW::IP:
 
 =item *
 
-L<WWW::curlmyip> - another module that returns your ip address
-
-=item *
-
 L<WWW::ipinfo> - a module that returns ip address and geolocation data
 
 =item *
 
 L<WWW::hmaip> - another module that returns your ip address
 
+=item *
+
+L<WWW::PerlTricksIP> - another module that returns your ip address
+
 =back
 
 =head1 AUTHOR
 
-David Farrell <sillymoos@cpan.org>
+David Farrell <dfarrell@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

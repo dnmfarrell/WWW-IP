@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Test::More;
-use Test::RequiresInternet 0.03 ( 'curlmyip.com' => 80 );
+use Test::RequiresInternet 0.03 ( 'google.com' => 80 );
 
 BEGIN { use_ok 'WWW::IP' }
 

@@ -5,7 +5,7 @@ package WWW::IP;
 use HTTP::Tiny;
 use 5.008;
 use WWW::hmaip ();
-use WWW::curlmyip ();
+use WWW::PerlTricksIP ();
 use WWW::ipinfo ();
 use Try::Tiny;
 
@@ -43,20 +43,20 @@ Returns your ip address. Will try a number of services in succession should the
 =cut
 
 sub get_ip {
+  try {
+    WWW::hmaip::get_ip();
+  } catch {
     try {
-        WWW::curlmyip::get_ip();
+      WWW::ipinfo::get_ipinfo->{ip};
     } catch {
-        try {
-            WWW::hmaip::get_ip();
-        } catch {
-            try {
-                WWW::ipinfo::get_ipinfo->{ip};
-            }
-            catch {
-                die $_;
-            }
-        }
-    };
+      try {
+        WWW::PerlTricksIP::get_ip();
+      }
+      catch {
+        die $_;
+      }
+    }
+  };
 }
 
 =head1 SEE ALSO
@@ -67,15 +67,15 @@ These modules are used by WWW::IP:
 
 =item *
 
-L<WWW::curlmyip> - another module that returns your ip address
-
-=item *
-
 L<WWW::ipinfo> - a module that returns ip address and geolocation data
 
 =item *
 
 L<WWW::hmaip> - another module that returns your ip address
+
+=item *
+
+L<WWW::PerlTricksIP> - another module that returns your ip address
 
 =back
 
