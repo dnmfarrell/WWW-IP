@@ -1,13 +1,12 @@
+use 5.008;
 use strict;
 use warnings;
 package WWW::IP;
 
 use HTTP::Tiny;
-use 5.008;
 use WWW::hmaip ();
-use WWW::PerlTricksIP ();
 use WWW::ipinfo ();
-use Try::Tiny;
+use WWW::canihazip ();
 
 # ABSTRACT: Returns your ip address with failsafe mechanism
 
@@ -34,29 +33,22 @@ BEGIN {
 
 =head2 get_ip
 
-Returns your ip address. Will try a number of services in succession should the 
-
-    use WWW::IP;
-
-    my $ip = get_ip();
+Returns your ip address. Will try a number of services in succession should the
+initial request fail
 
 =cut
 
 sub get_ip {
-  try {
-    WWW::hmaip::get_ip();
-  } catch {
-    try {
-      WWW::ipinfo::get_ipinfo->{ip};
-    } catch {
-      try {
-        WWW::PerlTricksIP::get_ip();
-      }
-      catch {
-        die $_;
-      }
+  my $ip = eval { WWW::canihazip::get_ip() };
+  if ($@)
+  {
+    $ip = eval { WWW::hmaip::get_ip() };
+    if ($@)
+    {
+      $ip = eval { WWW::ipinfo::get_ipinfo->{ip} };
     }
-  };
+  }
+  $ip;
 }
 
 =head1 SEE ALSO
@@ -67,15 +59,15 @@ These modules are used by WWW::IP:
 
 =item *
 
+L<WWW::canihazip> - a module that returns your ip address
+
+=item *
+
 L<WWW::ipinfo> - a module that returns ip address and geolocation data
 
 =item *
 
 L<WWW::hmaip> - another module that returns your ip address
-
-=item *
-
-L<WWW::PerlTricksIP> - another module that returns your ip address
 
 =back
 
