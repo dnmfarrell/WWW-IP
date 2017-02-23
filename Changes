@@ -1,5 +1,8 @@
 Revision history for WWW::IP
 
+0.05    2017-02-22
+        Rm dzil dep
+
 0.04    2016-04-12
         Added WWW::canihazip service!
 
